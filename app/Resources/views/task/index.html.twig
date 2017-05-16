@@ -47,22 +47,22 @@
                 status = 1;//active
             }
             var data = { id : id , status : status};
-            ajax_call( "{{ path('_updatetask_ajax') }}" ,data);
+            ajax_call( "{{ path('updatetask') }}" ,data);
         }
 
         function delete_task(id){
             var data = {  id : id};
-            ajax_call( "{{ path('_deletetask_ajax') }}" ,data);
+            ajax_call( "{{ path('deletetask') }}" ,data);
         }
 
         function listtasks(status){
             var data = { status :status };
-            ajax_call( "{{ path('_filterlist_ajax') }}" , data);
+            ajax_call( "{{ path('filterlist') }}" , data);
         }
 
         $(document).ready(function(){
 
-            ajax_call( "{{ path('_todolist_ajax') }}" ,{ status : 0 } );
+            ajax_call( "{{ path('todolist') }}" ,{ status : 0 } );
 
             $('#new-todo').keypress(function (e) {
                 var key = e.which;
@@ -70,7 +70,7 @@
                 {
                     if($('#new-todo').val()!=""){
                         var data = { task_name : $('#new-todo').val()};
-                        ajax_call( "{{ path('_addtask_ajax') }}" ,data);
+                        ajax_call( "{{ path('addtask') }}" ,data);
                         $("#new-todo").val('');
                     }
 

@@ -33,9 +33,9 @@ class TaskController extends Controller
 
 
     /**
-     * @Route("/ajax/filterlist", name="_filterlist_ajax")
+     * @Route("/filterlist", name="filterlist")
      */
-    public function getlistAction(Request $request){
+    public function filterlistAction(Request $request){
 
         $status = 0;
         if ($request->isXMLHttpRequest()) {
@@ -69,9 +69,9 @@ class TaskController extends Controller
     }
 
     /**
-     * @Route("/ajax/todolist/", name="_todolist_ajax")
+     * @Route("/todolist", name="todolist")
      */
-    public function listtasksAction(){
+    public function todolistAction(){
         $em = $this->getDoctrine()->getManager();
         $tasks = $em->getRepository('AppBundle:Task')->findAll();
 
@@ -97,7 +97,7 @@ class TaskController extends Controller
 
 
     /**
-     * @Route("/ajax/addtask", name="_addtask_ajax")
+     * @Route("/addtask", name="addtask")
      */
     public function addtaskAction(Request $request){
 
@@ -115,14 +115,14 @@ class TaskController extends Controller
                     $em->flush();
                 }
 
-                return  $this->listtasksAction();
+                return  $this->todolistAction();
             }
         }
         return new Response('This is not ajax!', 400);
     }
 
     /**
-     * @Route("/ajax/updatetask", name="_updatetask_ajax")
+     * @Route("/updatetask", name="updatetask")
      */
     public function updatetaskAction(Request $request){
 
@@ -158,7 +158,7 @@ class TaskController extends Controller
 
                 }
 
-                return  $this->listtasksAction();
+                return  $this->todolistAction();
 
             }
 
@@ -167,8 +167,9 @@ class TaskController extends Controller
     }
 
     /**
-     * @Route("/ajax/deletetask", name="_deletetask_ajax")
+     * @Route("/deletetask", name="deletetask")
      */
+
     public function deletetaskAction(Request $request){
 
         if ($request->isMethod('POST')) {
@@ -197,7 +198,7 @@ class TaskController extends Controller
                     }
                 }
 
-                return $this->listtasksAction();
+                return $this->todolistAction();
             }
         }
         return new Response('This is not ajax!', 400);
