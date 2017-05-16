@@ -115,7 +115,7 @@ class TaskController extends Controller
                     $em->flush();
                 }
 
-               return  $this->listtasksAction();
+                return  $this->listtasksAction();
             }
         }
         return new Response('This is not ajax!', 400);
